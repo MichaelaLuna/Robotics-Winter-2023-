@@ -1,13 +1,33 @@
 #include <IRremote.h> // Include the library for the IRremote
 #include <Servo.h> // Include the library for the servo
 
-int receiver = 9; // Set pin 9 as the receiver 
-
 #define MotorA 7 // Initialize motor A1N1 to pin 7 of arduino
 #define MotorB 8 // Initialize motor B1N1 to pin 8 of arduino
 #define Motor_SpeedA 5 // Initialize motor PWMA to pin 5 of arduino
 #define Motor_SpeedB 6 // Initialize motor PWMB to pin 6 of arduino
 #define EnablePin 3 // Set pin 3 of arduino as the EnablePin, ("Stby")
+
+int LatchPin = 19;  // defines pin for the latch
+int ShiftPin = 18;  // defines pin for shift 
+int DataInput = 10; // defines pin for data input 
+int digPins[4] = {A0,A1,12,13}; // has four dedicated common pins to control each digit separately */
+
+int receiver = 9; // Set pin 9 as the receiver 
+
+const byte digits[10] = {  
+  // defines an array of bytes that represent the pattern to light up each segment of a digit.
+  B11101111,  // 0 afbgc-de
+  B00101100,  // 1
+  B10110111,  // 2
+  B10111110,  // 3
+  B01111100,  // 4
+  B11011110,  // 5
+  B11011111,  // 6
+  B10101100,  // 7
+  B11111111,  // 8
+  B11111110,  // 9
+};
+
 
 Servo myservo; // Set servo as an object to control the servo
 IRrecv irrecv(receiver); // Create the receiver object; I chose 'irrecv'
@@ -15,6 +35,14 @@ decode_results results; // Decode Xresults from the IRremote;
 
 
 void setup() { // Run the code once
+  
+  pinMode (LatchPin ,OUTPUT);
+  pinMode (ShiftPin, OUTPUT);
+  pinMode (DataInput, OUTPUT);
+  pinMode (A0, OUTPUT);
+  pinMode (A1, OUTPUT);
+  pinMode (12, OUTPUT);
+  pinMode (13, OUTPUT); 
   
   irrecv.enableIRIn(); // Start the receiver
   
@@ -27,6 +55,46 @@ void setup() { // Run the code once
 
 
 void loop() { // Run the code on loop
+  
+  // Start of First Dig
+  digitalWrite (13, LOW);
+  digitalWrite (12, HIGH);
+  digitalWrite (A1, HIGH);
+  digitalWrite (A0, HIGH);
+  digitalWrite (LatchPin, LOW);
+  shiftOut(DataInput, ShiftPin, MSBFIRST,digits[7] );
+  digitalWrite (LatchPin, HIGH); 
+  delay(5);
+ 
+  // Start of Second Dig
+  digitalWrite (13, HIGH);
+  digitalWrite (12, LOW);
+  digitalWrite (A1, HIGH);
+  digitalWrite (A0, HIGH);
+  digitalWrite (LatchPin, LOW);
+  shiftOut(DataInput, ShiftPin, MSBFIRST, digits[3] );
+  digitalWrite (LatchPin, HIGH);
+  delay(5);
+  
+  // Start of Third Dig
+  digitalWrite (13, HIGH);
+  digitalWrite (12, HIGH);
+  digitalWrite (A1, LOW);
+  digitalWrite (A0, HIGH);
+  digitalWrite (LatchPin, LOW);
+  shiftOut(DataInput, ShiftPin, MSBFIRST,digits[9]);
+  digitalWrite (LatchPin, HIGH); 
+  delay(5);
+
+  // Start of Fourth Dig
+  digitalWrite (13, HIGH);
+  digitalWrite (12, HIGH);
+  digitalWrite (A1, HIGH);
+  digitalWrite (A0, LOW);
+  digitalWrite (LatchPin, LOW);
+  shiftOut(DataInput, ShiftPin, MSBFIRST, digits[6]);
+  digitalWrite (LatchPin, HIGH);
+  delay(5);
   
   myservo.write(90);  // Set/Turn servo at 90 Degrees position
   delay(300); // Delay for 300ms
