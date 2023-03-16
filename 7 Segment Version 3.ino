@@ -1,33 +1,40 @@
-// Arduino Pin numbers for each segment stored in an array
-int segPins[] = {10, 9, 7, 6, 5, 11, 12, 8 };  // { a b c d e f g . )
-// Binary on off settings for each character stored in 2D array
-byte segCode[11][8] = {
-//  a  b  c  d  e  f  g  .
-  { 1, 1, 1, 1, 1, 1, 0, 0},  // 0
-  { 0, 1, 1, 0, 0, 0, 0, 0},  // 1
-  { 1, 1, 0, 1, 1, 0, 1, 0},  // 2
-  { 1, 1, 1, 1, 0, 0, 1, 0},  // 3
-  { 0, 1, 1, 0, 0, 1, 1, 0},  // 4
-  { 1, 0, 1, 1, 0, 1, 1, 0},  // 5
-  { 1, 0, 1, 1, 1, 1, 1, 0},  // 6
-  { 1, 1, 1, 0, 0, 0, 0, 0},  // 7
-  { 1, 1, 1, 1, 1, 1, 1, 0},  // 8
-  { 1, 1, 1, 1, 0, 1, 1, 0},  // 9
-  { 0, 0, 0, 0, 0, 0, 0, 1}   // .
-};
 
-void setup() { // put your setup code here, to run once:
+
+
+
+             
+              
+int segPins[] = {10, 9, 7, 6, 5, 11, 12, 8 };  // Arduino Pin numbers for each segment stored in an array (a, b, c, d, e, f,  g, .)
+
+byte segCode[10][8] = {   // The code that will turn on and off each Led of the 7 segment; allows me to show numbers from 0-9
+  
+/*  a  b  c  d  e  f  g  .
+
+  { 1, 1, 1, 1, 1, 1, 0, 0},  -- 0
+  { 0, 1, 1, 0, 0, 0, 0, 0},  -- 1
+  { 1, 1, 0, 1, 1, 0, 1, 0},  -- 2
+  { 1, 1, 1, 1, 0, 0, 1, 0},  -- 3
+  { 0, 1, 1, 0, 0, 1, 1, 0},  -- 4
+  { 1, 0, 1, 1, 0, 1, 1, 0},  -- 5
+  { 1, 0, 1, 1, 1, 1, 1, 0},  -- 6
+  { 1, 1, 1, 0, 0, 0, 0, 0},  -- 7
+  { 1, 1, 1, 1, 1, 1, 1, 0},  -- 8
+  { 1, 1, 1, 1, 0, 1, 1, 0},  -- 9
+  
+*/
+  
+}; // End of the array segCode
+
+void setup() {  // Runs the code once
 
 for(int i = 0; i <9; i++){
 pinMode(segPins[i], OUTPUT);}
-Serial.begin(9600);
 }
 
 
 // Function for printing the number
 void displayDigit(int digit)
 {
-  Serial.println(digit);
   for (int i=0; i < 9; i++)
   {
 
@@ -43,9 +50,7 @@ void displayDigit(int digit)
 }
 
 
-// loop() runs again and again...
-void loop()
-{
+void loop() {
   displayDigit(0);  // Sets the segments on the display to number 1
   delay(2000);      // delay 2000 milliseconds (2 seconds)
   displayDigit(1);  // Sets the segments on the display to number 1
