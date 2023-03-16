@@ -1,7 +1,7 @@
 /* ----- This program is used to control a one digit 7 segment to count from numbers 0-9 using the simpliest way possible. -----
    ----- The simpliest means knowing how to set all the pins as an output and know how to call them in the loop as well.   ----- 
-   ----- Although, part of the goal of this is to know the purpose of each pin and know which is connected to which in     ----- 
-   -----                        order to know how to diplay a number from 0-9 in this device.                              ----- */
+   ----- Part of the goal of this is to know the purpose of each pin and know which is connected to which in order to      ----- 
+   -----                            know how to diplay a number from 0-9 in this device.                                   ----- */
    
 
 void setup() {   // This runs the code once
