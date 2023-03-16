@@ -1,8 +1,8 @@
 /* ----- This program is used to control a one digit 7 segment to count from numbers 0-9 using the for loop in the setup. -----
    ----- This means knowing how to set all the pins as an output while putting them in a for() loop that includes:        ----- 
-   ----- initialization, condition and incrementation; and knowing how to call them in the void loop() after. Although,   ----- 
-   ----- part of the goal of this is to know the purpose of each pin and know which is connected to which in order to     -----
-   -----           which is connected to which in order to know how to diplay a number from 0-9 in this device.           ----- */
+   ----- initialization, condition and incrementation; and knowing how to call them in the void loop() after. Part of     ----- 
+   ----- the goal of this is to know the purpose of each pin and know which is connected to which in order to which is    -----
+   -----               connected to which in order to know how to diplay a number from 0-9 in this device.                ----- */
    
 
 
