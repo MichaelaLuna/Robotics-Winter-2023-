@@ -1,7 +1,10 @@
-
-
-
-
+/* ----- This program is used to control a one digit 7 segment to count from numbers 0-9 using the arrays in top and the for()   -----
+   ----- loop in the setup. It's about knowing how to use the array properly and also knowing how to associate "byte" in this    -----
+   ----- case; knowing that byte will be the one used with the logic that showing different numbers with a 7 segment means       ----- 
+   ----- turning on and off the leds in it. Also, it's about knowing how to set all the pins as an output while putting them     -----
+   ----- in a for() loop that includes: initialization, condition and incrementation; and knowing how to call them in the void   -----
+   ----- loop() after. Part of the goal of this is to know the purpose of each pin and know which is connected to which in       -----
+   -----       order to which is connected to which in order to know how to diplay a number from 0-9 in this device.             ----- */
              
               
 int segPins[] = {10, 9, 7, 6, 5, 11, 12, 8 };  // Pin numbers from the arduino for each segment stored in an array (a, b, c, d, e, f,  g, .)
