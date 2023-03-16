@@ -4,7 +4,7 @@
 
              
               
-int segPins[] = {10, 9, 7, 6, 5, 11, 12, 8 };  // Arduino Pin numbers for each segment stored in an array (a, b, c, d, e, f,  g, .)
+int segPins[] = {10, 9, 7, 6, 5, 11, 12, 8 };  // Pin numbers from the arduino for each segment stored in an array (a, b, c, d, e, f,  g, .)
 
 byte segCode[10][8] = {   // The code that will turn on and off each Led of the 7 segment; allows me to show numbers from 0-9
   
@@ -25,50 +25,76 @@ byte segCode[10][8] = {   // The code that will turn on and off each Led of the 
   
 }; // End of the array segCode
 
+
 void setup() {  // Runs the code once
 
-for(int i = 0; i <9; i++){
-pinMode(segPins[i], OUTPUT);}
-}
+for(int i = 0; i <9; i++) {  // This initialize the "i" to be euqal to 0 and less than 9 as it increases 
+  
+    pinMode(segPins[i], OUTPUT); // Sets the "i" as an output
+  
+} // End of for() loop
+
+} // End of setup
 
 
-// Function for printing the number
-void displayDigit(int digit)
-{
-  for (int i=0; i < 9; i++)
-  {
 
-  digitalWrite(segPins[i], segCode[digit][i]);
- //digitalWrite(segPins[i], !segCode[digit][i]);
-//  ************************************************
-//  ** Notice the one change in the line above 
-//  **  '!' is a boolean operator, logical NOT 
-//  ** This flips the bit from 0 to 1 or 1 to 0
-//  ** Use this line if your display is common Anode
-//  ************************************************  
-  }
-}
+void displayDigit(int digit){ // The function for calling and displaying a digit
+  
+  for (int i=0; i < 9; i++) { // This initialize the "i" to be euqal to 0 and less than 9 as it increases 
+
+  digitalWrite(segPins[i], segCode[digit][i]); // This activates the "segPins" so leds will light up
+                                               // This activates the "segCode" as well; the pattern from it will show
+    
+    
+ /* digitalWrite(segPins[i], !segCode[digit][i]); -- I can use this if my wiring is in "Common Anode" */
+
+} // End of for() loop
+  
+} // End of function 
 
 
-void loop() {
-  displayDigit(0);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(1);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(2);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(3);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(4);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(5);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(6);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(7);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(8);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-  displayDigit(9);  // Sets the segments on the display to number 1
-  delay(2000);      // delay 2000 milliseconds (2 seconds)
-}
+
+
+void loop() { // Run the code on loop
+  
+  displayDigit(0);  // Call the function "displayDigit" to display 0
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(1);  // Call the function "displayDigit" to display 1
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(2);  // Call the function "displayDigit" to display 2
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(3);  // Call the function "displayDigit" to display 3
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(4);  // Call the function "displayDigit" to display 4
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(5);  // Call the function "displayDigit" to display 5
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(6);  // Call the function "displayDigit" to display 6
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(7);  // Call the function "displayDigit" to display 7
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(8);  // Call the function "displayDigit" to display 8
+  
+  delay(2000);      // Delay for 2 seconds
+  
+  displayDigit(9);  // Call the function "displayDigit" to display 9
+  
+  delay(2000);      // Delay for 2 seconds
+  
+} // End of loop
